@@ -39,6 +39,12 @@ class UtilsTest(unittest.TestCase):
         min_validator = ValidatorType.get_validator(ValidatorType.MIN.code)
         min_validator.validate(101, 100, error)
         self.assertTrue(len(error) == 0)
+    
+    def test_max_validator(self):
+        error = []
+        max_validator = ValidatorType.get_validator(ValidatorType.MAX.code)
+        max_validator.validate(100, 101, error)
+        self.assertTrue(len(error) == 0)
 
     def test_value_less_than_expected(self):
         error = []
@@ -54,6 +60,12 @@ class UtilsTest(unittest.TestCase):
         error = []
         min_validator = ValidatorType.get_validator(ValidatorType.MIN_LENGTH.code)
         min_validator.validate("abcd", 3, error)
+        self.assertTrue(len(error) == 0)
+
+    def test_max_length_validator(self):
+        error = []
+        max_validator = ValidatorType.get_validator(ValidatorType.MAX_LENGTH.code)
+        max_validator.validate("abcdefghijklm", 12, error)
         self.assertTrue(len(error) == 0)
 
     def test_value_length_less_than_expected(self):
